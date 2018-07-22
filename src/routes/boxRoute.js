@@ -2,7 +2,8 @@ import {
     addNewBox, 
     getBox,
     addDeviceData, 
-    addDevice
+    addDevice,
+    getDeviceById
 } from '../controllers/boxController';
 import {ensureAuthenticated} from '../controllers/boxAuth';
 import passport from 'passport';
@@ -24,7 +25,7 @@ const routes = (app) => {
       });
 
     app.get('/box',ensureAuthenticated,getBox);
-    app.get('/box/device/:id');
+    app.get('/box/device/:serial_number', ensureAuthenticated, getDeviceById);
     
     // POST endpoint
     app.post('/box',ensureAuthenticated,addNewBox);

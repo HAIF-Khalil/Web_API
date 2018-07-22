@@ -93,5 +93,17 @@ export const addDevice= (req,res) => {
                 }
                
             } );
+}
 
+
+export const getDeviceById = (req,res) => {
+console.log("serial_number------",req.params);
+    Device.findOne({ box_serial_number : req.user.serial_number,
+                     serial_number : req.params.serial_number},
+                      (err, device) => {
+        if (err) {
+            res.send(err);
+        }
+        res.json(device);
+    });
 }
